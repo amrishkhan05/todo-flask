@@ -2,22 +2,46 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Todo List</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href=https://code.getmdl.io/1.3.0/material.brown-blue.min.css />
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     </head>
     <body>
-        <h1>To-Do List</h1>
-        <ul>
-            {% for todo in todos %}
-                <li>
-                    <span>{{ todo.text }}</span>
-                    <a href="/todos/{{ todo._id }}/edit">Edit</a>
-                    <a href="/todos/{{ todo._id }}/delete">Delete</a>
-                </li>
-            {% endfor %}
-        </ul>
-        <p>
-            <a href="/todos/create">Create Todo</a>
-        </p>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">To-Do List</span>
+                </div>
+            </header>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                            <ul class="mdl-list">
+                                {% for todo in todos %}
+                                    <li class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content">
+                                            <span>{{ todo.text }}</span>
+                                        </span>
+                                        <span class="mdl-list__item-secondary-content">
+                                            <a class="mdl-list__item-secondary-action" href="/todos/{{ todo._id }}/edit">Edit</a>
+                                            <a class="mdl-list__item-secondary-action" href="/todos/{{ todo._id }}/delete">Delete</a>
+                                        </span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="/todos/create">Create Todo</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
     </body>
 </html>
 
