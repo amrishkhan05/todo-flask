@@ -6,7 +6,8 @@ Created: 11 - 10 - 2017
 """
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
-from forms import NewToDoForm
+from bson.objectid import ObjectId
+from forms import ToDoForm
 
 # Create and configure app
 app = Flask(__name__, template_folder='views')
@@ -23,17 +24,37 @@ def get_all_todos():
     """
     return mongo.db.todos.find()
 
+def get_todo(id):
+    """
+    Returns the todo with the given id
+
+    :param id: the id of the todo
+
+    :return: the todo with the given id
+    """
+    return mongo.db.todos.find_one(filter={ '_id': ObjectId(id) })
+
 def create_todo(text):
     """
     Creates a new todo from the given text
 
     :param text: the text of the new todo
     """
-    mongo.db.todos.insert_one({"text": text})
+    mongo.db.todos.insert_one(document={ 'text': text })
+
+def update_todo(id, text):
+    """
+    Updates the todo with the given id to the given text
+
+    :param id: the id of the todo
+    :param text: the new text of the todo
+    """
+    mongo.db.todos.update_one(
+        filter={ '_id': ObjectId(id) },
+        update={ '$set': { 'text': text } })
 
 # Routes
 @app.route('/')
-@app.route('/index')
 def index_page():
     """
     Index page of the app
@@ -48,15 +69,38 @@ def todos_create_page():
     Handles creating todos on POST.
     Returns To-Do creation page on GET
     """
-    form = NewToDoForm()
+    form = ToDoForm()
     if form.validate_on_submit():
         print('Creating new TODO: {}'.format(form.text.data))
         create_todo(form.text.data)
-        return redirect('/index')
+        return redirect('/')
     else:
         return render_template(
-            template_name_or_list='create.html',
-            form=form)
+            template_name_or_list='todo.html',
+            form=form,
+            handle='Create')
+
+@app.route('/todos/<id>/edit', methods=['GET', 'POST'])
+def todos_edit_page(id):
+    """
+    Handles Editing Todos
+    """
+    form = ToDoForm()
+    todo = get_todo(id)
+    print(todo)
+    if form.validate_on_submit():
+        print('Updating TODO {id} to {text}'.format(
+            id=todo['_id'],
+            text=form.text.data
+        ))
+        update_todo(id, form.text.data)
+        return redirect('/')
+    else:
+        return render_template(
+            template_name_or_list='todo.html',
+            form=form,
+            todo=todo,
+            handle='Edit')
 
 # Start app
 if __name__ == '__main__':

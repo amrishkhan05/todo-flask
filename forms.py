@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
 
-class NewToDoForm(FlaskForm):
+class ToDoForm(FlaskForm):
     """
     Form for creating new To-Do's
 
