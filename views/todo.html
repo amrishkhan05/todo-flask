@@ -9,11 +9,11 @@
         <form action="" method="post">
             {{ form.hidden_tag() }}
             {% if todo is defined %}
-                <p>{{ form.text(value=todo.text) }}</p>
+                {{ form.text(value=todo.text) }}
             {% else %}
-                <p>{{ form.text }}</p>
+                {{ form.text }}
             {% endif %}
-            <p><input type="submit" value="{{ handle }}">
+            <input type="submit" value="{{ handle }}">
         </form>
     </body>
 </html>
