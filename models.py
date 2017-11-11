@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 from flask_wtf import FlaskForm
 from wtforms import StringField
 
-class ToDoForm(FlaskForm):
+class TodoForm(FlaskForm):
     """
     Form for updating To-Do's
 
@@ -61,12 +61,41 @@ class Todo:
         doc = cls.collection(db).find_one(filter={ '_id': ObjectId(id) })
         return Todo(**doc)
 
-    def __init__(self, text, _id=None):
+    def __init__(self, text='', _id=None):
         """
-        Initializes instance
+        Initializes the todo with the given text and _id
+
+        :param text: the text of the Todo
+        :param _id: the _id of the Todo
         """
-        self.text = text
         self._id = _id
+        self.text = text
+        self.form = TodoForm()
+
+    @property
+    def doc(self):
+        """
+        The document dict of the Todo
+        """
+        return {'_id': self._id,
+                'text': self.text}
+
+    def form_submit(self):
+        """
+        Returns true if the given todo form is being submitted
+
+        :return: true if the given todo form is being submitted
+        """
+        return self.form.validate_on_submit()
+
+    def update(self, db):
+        """
+        Updates the record from the form and saves it to the database
+
+        :param db: the database to save to
+        """
+        self.text = self.form.text.data
+        self.save(db)
 
     def save(self, db):
         """

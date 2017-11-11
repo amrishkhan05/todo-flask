@@ -6,7 +6,7 @@ Created: 11 - 10 - 2017
 """
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
-from models import Todo, ToDoForm
+from models import Todo
 
 # Create and configure app, get database
 app = Flask(__name__, template_folder='views')
@@ -29,15 +29,15 @@ def todos_create_page():
     Handles creating todos on POST.
     Returns To-Do creation page on GET
     """
-    form = ToDoForm()
-    if form.validate_on_submit():
-        print('Creating new TODO: {}'.format(form.text.data))
-        Todo(text=form.text.data).save(mongo.db)
+    todo = Todo()
+    if todo.form.validate_on_submit():
+        todo.update(mongo.db)
+        print('Created new TODO: {text}'.format(**todo.doc))
         return redirect('/')
     else:
         return render_template(
             template_name_or_list='todo.html',
-            form=form,
+            form=todo.form,
             handle='Create')
 
 @app.route('/todos/<id>/edit', methods=['GET', 'POST'])
@@ -45,17 +45,15 @@ def todos_edit_page(id):
     """
     Handles Editing Todos
     """
-    form = ToDoForm()
     todo = Todo.get(mongo.db, id)
-    if form.validate_on_submit():
-        print('Updating TODO {id} to {text}'.format(id=todo._id, text=todo.text))
-        todo.text = form.text.data
-        todo.save(mongo.db)
+    if todo.form.validate_on_submit():
+        todo.update(mongo.db)
+        print('Updated TODO {_id} to {text}'.format(**todo.doc))
         return redirect('/')
     else:
         return render_template(
             template_name_or_list='todo.html',
-            form=form,
+            form=todo.form,
             todo=todo,
             handle='Edit')
 
@@ -64,8 +62,9 @@ def todos_delete_function(id):
     """
     Handles deleting todos
     """
-    print('Deleting TODO {id}'.format(id=id))
-    Todo.get(mongo.db, id).delete(mongo.db)
+    todo = Todo.get(mongo.db, id)
+    todo.delete(mongo.db)
+    print('Deleted TODO {_id}'.format(**todo.doc))
     return redirect('/')
 
 # Start app
