@@ -30,7 +30,7 @@ def todos_create_page():
     Returns To-Do creation page on GET
     """
     todo = Todo()
-    if todo.form.validate_on_submit():
+    if todo.form_submit():
         todo.update(mongo.db)
         print('Created new TODO: {text}'.format(**todo.doc))
         return redirect('/')
@@ -46,7 +46,7 @@ def todos_edit_page(id):
     Handles Editing Todos
     """
     todo = Todo.get(mongo.db, id)
-    if todo.form.validate_on_submit():
+    if todo.form_submit():
         todo.update(mongo.db)
         print('Updated TODO {_id} to {text}'.format(**todo.doc))
         return redirect('/')
