@@ -69,7 +69,7 @@ def todos_index_page():
     """
     return render_template(
         template_name_or_list='index.html',
-        todos=get_all_todos())
+        todos=index_todos())
 
 @app.route('/todos/create', methods=['GET', 'POST'])
 def todos_create_page():
@@ -120,4 +120,4 @@ def todos_delete_function(id):
 
 # Start app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
