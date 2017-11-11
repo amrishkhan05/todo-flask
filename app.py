@@ -37,7 +37,7 @@ def todos_create_page():
     else:
         return render_template(
             template_name_or_list='todo.html',
-            form=todo.form,
+            todo=todo,
             handle='Create')
 
 @app.route('/todos/<id>/edit', methods=['GET', 'POST'])
@@ -53,7 +53,6 @@ def todos_edit_page(id):
     else:
         return render_template(
             template_name_or_list='todo.html',
-            form=todo.form,
             todo=todo,
             handle='Edit')
 

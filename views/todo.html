@@ -3,14 +3,10 @@
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
         <form action="" method="post">
-            {{ form.hidden_tag() }}
+            {{ todo.form.hidden_tag() }}
             <div class='mdl-textfield mdl-js-textfield'>
-                {% if todo is defined %}
-                    {{ form.text(value=todo.text, class_='mdl-textfield__input', id='input') }}
-                {% else %}
-                    {{ form.text(class_='mdl-textfield__input') }}
-                {% endif %}
-                <label class="mdl-textfield__label" for="input">What to do...</label>
+                {{ todo.form.text(value=todo.text, class_='mdl-textfield__input', id='input') }}
+                <label class="mdl-textfield__label" for="input">New task...</label>
             </div>
             <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" value="{{ handle }}">
             <a href="/" class="mdl-button mdl-js-button mdl-button--accent">Cancel</a>
