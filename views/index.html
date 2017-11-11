@@ -17,28 +17,20 @@
             </header>
             <main class="mdl-layout__content">
                 <div class="page-content">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-                            <ul class="mdl-list">
-                                {% for todo in todos %}
-                                    <li class="mdl-list__item">
-                                        <span class="mdl-list__item-primary-content">
-                                            <span>{{ todo.text }}</span>
-                                        </span>
-                                        <span class="mdl-list__item-secondary-content">
-                                            <a class="mdl-list__item-secondary-action" href="/todos/{{ todo._id }}/edit">Edit</a>
-                                            <a class="mdl-list__item-secondary-action" href="/todos/{{ todo._id }}/delete">Delete</a>
-                                        </span>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                    <ul class="mdl-list">
+                        {% for todo in todos %}
+                            <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                    <span>{{ todo.text }}</span>
+                                </span>
+                                <a class="mdl-button mdl-js-button mdl-button--accent mdl-list__item-secondary-action" href="/todos/{{ todo._id }}/edit">Edit</a>
+                                <a class="mdl-button mdl-js-button mdl-button--accent mdl-list__item-secondary-action" href="/todos/{{ todo._id }}/delete">Delete</a>
+                            </li>
+                        {% endfor %}
+                        <li class="mdl-list__item">
                             <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="/todos/create">Create Todo</a>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </main>
         </div>
