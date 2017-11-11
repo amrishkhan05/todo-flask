@@ -16,7 +16,7 @@ app.config.from_pyfile('config.py')
 # Create mongo
 mongo = PyMongo(app)
 
-def get_all_todos():
+def index_todos():
     """
     Returns the todos from the database
 
@@ -53,9 +53,17 @@ def update_todo(id, text):
         filter={ '_id': ObjectId(id) },
         update={ '$set': { 'text': text } })
 
+def delete_todo(id):
+    """
+    Deletes the todo with the given id
+
+    :param id: the id to delete
+    """
+    mongo.db.todos.delete_one({ '_id': ObjectId(id) })
+
 # Routes
 @app.route('/')
-def index_page():
+def todos_index_page():
     """
     Index page of the app
     """
@@ -87,7 +95,6 @@ def todos_edit_page(id):
     """
     form = ToDoForm()
     todo = get_todo(id)
-    print(todo)
     if form.validate_on_submit():
         print('Updating TODO {id} to {text}'.format(
             id=todo['_id'],
@@ -101,6 +108,15 @@ def todos_edit_page(id):
             form=form,
             todo=todo,
             handle='Edit')
+
+@app.route('/todos/<id>/delete')
+def todos_delete_function(id):
+    """
+    Handles deleting todos
+    """
+    print('Deleting TODO {id}'.format(id=id))
+    delete_todo(id)
+    return redirect('/')
 
 # Start app
 if __name__ == '__main__':

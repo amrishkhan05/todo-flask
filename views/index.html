@@ -8,7 +8,11 @@
         <h1>To-Do List</h1>
         <ul>
             {% for todo in todos %}
-                <li>{{ todo.text }} <a href="/todos/{{ todo._id }}/edit">Edit</a></li>
+                <li>
+                    <span>{{ todo.text }}</span>
+                    <a href="/todos/{{ todo._id }}/edit">Edit</a>
+                    <a href="/todos/{{ todo._id }}/delete">Delete</a>
+                </li>
             {% endfor %}
         </ul>
         <p>
