@@ -9,7 +9,8 @@ from flask_pymongo import PyMongo
 from models import Todo
 
 # Create and configure app. Get database
-app = Flask(__name__, template_folder='views')
+app = Flask(__name__, template_folder='views',
+                      static_folder='statics')
 app.config.from_pyfile('config.py')
 mongo = PyMongo(app)
 
