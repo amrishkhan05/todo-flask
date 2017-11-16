@@ -1,15 +1,19 @@
 {% extends 'default.html' %}
 {% block content %}
-<ul>
+<ul class="ld-list">
     {% for todo in todos %}
-        <li>
-            <span>{{ todo.text }}</span>
-            <a href="/todos/{{ todo._id }}/edit">Edit</a>
-            <a href="/todos/{{ todo._id }}/delete">Delete</a>
+        <li class="ld-list-item">
+            <span class="ld-list-item-left-end">{{ todo.text }}</span>
+            <span class="ld-list-item-right-end">
+                <a class="ld-action-link" href="/todos/{{ todo._id }}/edit">Edit</a>
+                <a class="ld-action-link" href="/todos/{{ todo._id }}/delete">Delete</a>
+            </span>
         </li>
     {% endfor %}
 </ul>
-<p><a href="/todos/create">Create Todo</a></p>
+<p class="ld-action-set">
+    <a class="ld-bordered-action-link" href="/todos/create">Create Todo</a>
+</p>
 {% endblock %}
 
 <!-- Rockwell Retro Encabulator -->

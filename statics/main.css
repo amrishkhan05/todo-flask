@@ -1,0 +1,81 @@
+/* Using calibri */
+* {
+    font-family: "Calibri", sans-serif;
+    font-size: 12pt;
+}
+
+.ld-nav {
+    margin: 0pt;
+    padding: 4pt;
+    border-bottom: 2pt solid #079;
+
+    display: flex;
+    flex-direction: row;
+}
+.ld-nav > .ld-nav-left-end {
+    text-align: left;
+    flex-grow: 1;
+}
+.ld-nav > .ld-nav-right-end {
+    text-align: right;
+    flex-grow: 1;
+}
+.ld-nav .ld-nav-title {
+    margin: 0pt;
+    font-size: 20pt;
+    color: #079;
+}
+
+.ld-content {
+    padding: 4pt;
+}
+
+.ld-list {
+    list-style: none;
+    padding: 0pt;
+    margin: 0pt;
+}
+
+.ld-list .ld-list-item {
+    margin: 4pt;
+    padding: 6pt;
+    border-bottom: 1px solid #999;
+
+    display: flex;
+    flex-direction: row;
+}
+.ld-list .ld-list-item .ld-list-item-left-end {
+    text-align: left;
+    flex-grow: 1;
+}
+.ld-list .ld-list-item .ld-list-item-right-end {
+    text-align: right;
+    flex-grow: 1;
+}
+
+.ld-action-set {
+    margin: 4pt;
+    padding: 4pt;
+    text-align: right;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.ld-action-link {
+    margin: 0pt 4pt;
+    padding: 4pt;
+    color: #970;
+    text-decoration: none;
+}
+.ld-action-link:hover {
+    color: black;
+}
+.ld-bordered-action-link {
+    margin: 0pt 4pt;
+    padding: 4pt;
+    color: #079;
+    text-decoration: none;
+    border: 1pt solid #079;
+}
+.ld-bordered-action-link:hover {
+    background-color: #00779922
+}
