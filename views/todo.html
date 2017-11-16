@@ -1,16 +1,12 @@
 {% extends 'default.html' %}
 {% block content %}
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-        <form action="" method="post">
-            {{ todo.form.hidden_tag() }}
-            <div class='mdl-textfield mdl-js-textfield'>
-                {{ todo.form.text(value=todo.text, class_='mdl-textfield__input', id='input') }}
-                <label class="mdl-textfield__label" for="input">New task...</label>
-            </div>
-            <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" value="{{ handle }}">
-            <a href="/" class="mdl-button mdl-js-button mdl-button--accent">Cancel</a>
-        </form>
+<form action="" method="post">
+    {{ todo.form.hidden_tag() }}
+    <div>
+        {{ todo.form.text(value=todo.text, id='input') }}
+        <label for="input">New task...</label>
     </div>
-</div>
+    <input type="submit" value="{{ handle }}">
+</form>
+<a href="/">Cancel</a>
 {% endblock %}
