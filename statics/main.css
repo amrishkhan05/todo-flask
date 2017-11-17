@@ -53,18 +53,26 @@
     flex-grow: 1;
 }
 
-.ld-action-set {
+.ld-action-set-left {
     margin: 4pt;
     padding: 4pt;
-    text-align: right;
+    display: flex;
+    flex-direction: row;
+}
+.ld-action-set-right {
+    margin: 4pt;
+    padding: 4pt;
     display: flex;
     flex-direction: row-reverse;
 }
 .ld-action-link {
     margin: 0pt 4pt;
     padding: 4pt;
+    border: none;
+    background: none;
     color: #970;
     text-decoration: none;
+    transition: 0.2s ease-in-out;
 }
 .ld-action-link:hover {
     color: black;
@@ -74,8 +82,57 @@
     padding: 4pt;
     color: #079;
     text-decoration: none;
+    border: none;
+    background: none;
     border: 1pt solid #079;
+    transition: 0.2s ease-in-out;
 }
 .ld-bordered-action-link:hover {
-    background-color: #00779922
+    border-color: #777;
+    color: #777;
+}
+
+.ld-form .ld-form-row {
+    border-bottom: 1pt solid #999;
+    display: flex;
+    flex-direction: row;
+}
+.ld-form .ld-form-input-group {
+    position: relative;
+    padding: 0pt;
+    flex-grow: 1;
+}
+.ld-form-input-group .ld-form-input-label {
+    position: absolute;
+    bottom: 0pt;
+    left: 0pt;
+    margin: 2pt 4pt;
+    padding: 2pt 4pt;
+    color: #999;
+    transition: 0.2s ease-in-out;
+}
+.ld-form-input-group .ld-form-input-field {
+    margin: 2pt 4pt;
+    border: none;
+    padding: 2pt 4pt;
+    width: 99%;
+    transition: 0.2s ease-in-out;
+}
+.ld-form-input-group .ld-form-input-field:focus {
+    outline: none;
+}
+.ld-form-input-group .ld-form-input-field:focus + .ld-form-input-label {
+    opacity: 0;
+}
+.ld-form .ld-form-submit {
+    margin: 2pt 4pt;
+    padding: 2pt 4pt;
+    border: none;
+    background: none;
+    color: #079;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+}
+.ld-form .ld-form-submit:hover {
+    color: #000;
 }

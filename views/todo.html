@@ -1,12 +1,16 @@
 {% extends 'default.html' %}
 {% block content %}
-<form action="" method="post">
+<form class="ld-form" action="" method="post">
     {{ todo.form.hidden_tag() }}
-    <div>
-        {{ todo.form.text(value=todo.text, id='input') }}
-        <label for="input">New task...</label>
+    <div class="ld-form-row">
+        <div class="ld-form-input-group">
+            {{ todo.form.text(value=todo.text, class_='ld-form-input-field', id='input') }}
+            <label class="ld-form-input-label" for="input">New Task...</label>
+        </div>
+        <input class="ld-form-submit" type="submit" value="{{ handle }}">
     </div>
-    <input type="submit" value="{{ handle }}">
 </form>
-<a href="/">Cancel</a>
+<p class="ld-action-set">
+    <a class="ld-action-link" href="/">Cancel</a>
+</p>
 {% endblock %}
