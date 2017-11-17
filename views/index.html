@@ -5,14 +5,15 @@
         <li class="ld-list-item">
             <span class="ld-list-item-left-end">{{ todo.text }}</span>
             <span class="ld-list-item-right-end">
-                <a class="ld-action-link" href="/todos/{{ todo._id }}/edit">Edit</a>
-                <a class="ld-action-link" href="/todos/{{ todo._id }}/delete">Delete</a>
+                <a class="ld-action-link ld-accent" href="/todos/{{ todo._id }}/edit">Edit</a>
+                <a class="ld-action-link ld-accent" href="/todos/{{ todo._id }}/delete">Delete</a>
             </span>
         </li>
     {% endfor %}
 </ul>
 <p class="ld-action-set">
     <a class="ld-bordered-action-link" href="/todos/create">Create Todo</a>
+    <a class="ld-bordered-action-link ld-accent" href="/">Refresh</a>
 </p>
 {% endblock %}
 

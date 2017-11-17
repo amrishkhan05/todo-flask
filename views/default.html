@@ -12,14 +12,16 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}"/>
     </head>
     <body>
-        <div class="ld-nav">
-            <div class="ld-nav-left-end">
-                <h1 class="ld-nav-title">Todo Flask</h1>
+        <div class="ld-main">
+            <div class="ld-nav">
+                <div class="ld-nav-left-end">
+                    <h1 class="ld-nav-title">Todo Flask</h1>
+                </div>
             </div>
-        </div>
 
-        <div class="ld-content">
-            {% block content %}{% endblock %}
+            <div class="ld-content">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </body>
 </html>
